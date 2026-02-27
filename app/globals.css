@@ -1,0 +1,186 @@
+:root {
+  color-scheme: light;
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  line-height: 1.5;
+  background: #f6f7fb;
+  color: #1f2430;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: #f6f7fb;
+}
+
+.site-header {
+  background: linear-gradient(135deg, #2a5298, #1e3c72);
+  color: #fff;
+  padding: 2rem 1.2rem;
+  text-align: center;
+}
+
+main {
+  max-width: 980px;
+  margin: 1.25rem auto;
+  padding: 0 1rem 2rem;
+}
+
+.panel {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+  margin-bottom: 1rem;
+  padding: 1rem 1.25rem;
+}
+
+.profile-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 96px 1fr;
+  align-items: center;
+}
+
+.profile-logo {
+  width: 96px;
+  height: 96px;
+  border-radius: 12px;
+  object-fit: cover;
+  background: #eef1f8;
+  border: 1px solid #e4e7ef;
+}
+
+.meta-list {
+  margin: 0.5rem 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 0.3rem;
+}
+
+.achievement-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.world-filter-label {
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.world-filter-label select {
+  border: 1px solid #ced5e4;
+  border-radius: 6px;
+  padding: 0.35rem 0.5rem;
+}
+
+.achievement-list {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.achievement-card {
+  border: 1px solid #e5e9f4;
+  border-radius: 8px;
+  display: grid;
+  grid-template-columns: 42px 1fr;
+  gap: 0.85rem;
+  padding: 0.8rem;
+}
+
+.achievement-status {
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+}
+
+.achievement-status.completed {
+  background: #d9f7e6;
+  color: #0d6b37;
+  border: 1px solid #9ed7b7;
+}
+
+.achievement-status.pending {
+  background: #eef1f8;
+  color: #5e6b88;
+  border: 1px solid #ced5e4;
+}
+
+.achievement-title {
+  margin: 0 0 0.2rem;
+}
+
+.achievement-description {
+  margin: 0;
+  color: #4a5367;
+}
+
+.achievement-meta {
+  margin-top: 0.4rem;
+  font-size: 0.85rem;
+  color: #55617d;
+}
+
+.code-block {
+  background: #121722;
+  color: #d7e1ff;
+  padding: 0.8rem;
+  border-radius: 8px;
+  overflow: auto;
+}
+
+.error {
+  border-left: 4px solid #ce2c3a;
+  background: #fff2f4;
+}
+
+
+.finder-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1rem;
+  margin-top: 0.8rem;
+}
+
+.finder-card {
+  border: 1px solid #e5e9f4;
+  border-radius: 8px;
+  padding: 0.9rem;
+  display: grid;
+  gap: 0.6rem;
+}
+
+.finder-card h3 {
+  margin: 0;
+}
+
+.finder-card select,
+.finder-card input,
+.finder-card button {
+  font: inherit;
+  padding: 0.45rem 0.55rem;
+  border-radius: 6px;
+  border: 1px solid #ced5e4;
+}
+
+.finder-card button {
+  background: #2a5298;
+  color: #fff;
+  border-color: #2a5298;
+  cursor: pointer;
+}
+
+.finder-card button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.helper-error {
+  color: #9e1f2b;
+}
