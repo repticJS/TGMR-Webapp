@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TGMR Achievement Viewer</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <h1>TGMR Achievement Viewer</h1>
+      <p>View Minecraft achievements by team or player UUID.</p>
+    </header>
+
+    <main>
+      <section id="routeHelp" class="panel"></section>
+      <section id="profile" class="panel hidden"></section>
+      <section id="achievements" class="panel hidden"></section>
+    </main>
+
+    <template id="achievementCardTemplate">
+      <article class="achievement-card">
+        <div class="achievement-icon" aria-hidden="true"></div>
+        <div class="achievement-content">
+          <h3 class="achievement-title"></h3>
+          <p class="achievement-description"></p>
+          <div class="achievement-meta"></div>
+        </div>
+      </article>
+    </template>
+
+    <script src="/app.js" type="module"></script>
+  </body>
+</html>
