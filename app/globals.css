@@ -1,0 +1,219 @@
+:root {
+  color-scheme: dark;
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  line-height: 1.5;
+  background: #090d14;
+  color: #e8eef8;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: radial-gradient(circle at top, #15233d 0%, #090d14 45%, #06090f 100%);
+}
+
+.site-header {
+  padding: 1.5rem 1.2rem 1rem;
+  border-bottom: 1px solid #1f2a3f;
+  background: rgba(7, 12, 22, 0.7);
+  backdrop-filter: blur(8px);
+}
+
+.brand-wrap {
+  max-width: 980px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.site-logo {
+  width: 56px;
+  height: 56px;
+  border-radius: 12px;
+  box-shadow: 0 0 0 1px #263450;
+  background: #0b1425;
+}
+
+.site-header h1 {
+  margin: 0;
+  font-size: clamp(1.4rem, 2vw, 1.9rem);
+}
+
+.site-header p {
+  margin: 0.25rem 0 0;
+  color: #9ab0d4;
+}
+
+main {
+  max-width: 980px;
+  margin: 1.5rem auto;
+  padding: 0 1rem 2rem;
+}
+
+.panel {
+  background: linear-gradient(180deg, #111a2b, #0d1422);
+  border-radius: 14px;
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.28);
+  margin-bottom: 1rem;
+  padding: 1.1rem 1.25rem;
+  border: 1px solid #1f2a3f;
+}
+
+.finder-shell {
+  max-width: 620px;
+  margin: 0 auto;
+}
+
+.finder-shell h2 {
+  margin-top: 0;
+}
+
+.profile-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 96px 1fr;
+  align-items: center;
+}
+
+.profile-logo {
+  width: 96px;
+  height: 96px;
+  border-radius: 12px;
+  object-fit: cover;
+  background: #101a2a;
+  border: 1px solid #283954;
+}
+
+.meta-list {
+  margin: 0.5rem 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 0.3rem;
+}
+
+.achievement-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.world-filter-label {
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.world-filter-label select {
+  border: 1px solid #33496e;
+  background: #101a2a;
+  color: #e8eef8;
+  border-radius: 8px;
+  padding: 0.35rem 0.5rem;
+}
+
+.achievement-list {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.achievement-card {
+  border: 1px solid #253753;
+  border-radius: 10px;
+  display: grid;
+  grid-template-columns: 42px 1fr;
+  gap: 0.85rem;
+  padding: 0.8rem;
+  background: #0d1728;
+}
+
+.achievement-status {
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+}
+
+.achievement-status.completed {
+  background: #163926;
+  color: #78e0a1;
+  border: 1px solid #2f7f52;
+}
+
+.achievement-status.pending {
+  background: #141d2f;
+  color: #8fa6cb;
+  border: 1px solid #33496e;
+}
+
+.achievement-title {
+  margin: 0 0 0.2rem;
+}
+
+.achievement-description {
+  margin: 0;
+  color: #a8bbdc;
+}
+
+.achievement-meta {
+  margin-top: 0.4rem;
+  font-size: 0.85rem;
+  color: #91a6ca;
+}
+
+.error {
+  border-left: 4px solid #ce2c3a;
+  background: #2a1118;
+}
+
+.finder-stack {
+  display: grid;
+  gap: 1rem;
+  margin-top: 0.8rem;
+}
+
+.finder-card {
+  border: 1px solid #253753;
+  border-radius: 10px;
+  padding: 0.9rem;
+  display: grid;
+  gap: 0.6rem;
+  background: #0d1728;
+}
+
+.finder-card h3 {
+  margin: 0;
+}
+
+.finder-card select,
+.finder-card input,
+.finder-card button {
+  font: inherit;
+  padding: 0.55rem 0.65rem;
+  border-radius: 8px;
+  border: 1px solid #33496e;
+  background: #101a2a;
+  color: #e8eef8;
+}
+
+.finder-card button {
+  background: linear-gradient(135deg, #84d314, #5fa90f);
+  color: #09110a;
+  border: none;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.finder-card button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.helper-error {
+  color: #ff9ca5;
+}

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 560" role="img" aria-label="TGMR shield logo">
+  <path fill="#0a142a" d="M256 0c64 52 140 80 256 80v184c0 122-72 226-256 296C72 490 0 386 0 264V80c116 0 192-28 256-80z"/>
+  <path fill="#84d314" d="M256 40c58 44 128 68 226 68v149c0 105-61 194-226 252C91 451 30 362 30 257V108c98 0 168-24 226-68z"/>
+  <path fill="#0b1833" d="M256 74c49 36 109 56 193 56v120c0 87-51 161-193 210C114 411 63 337 63 250V130c84 0 144-20 193-56z"/>
+  <path fill="#1b7337" d="M256 100c41 31 91 48 165 48v97c0 71-42 132-165 175C133 377 91 316 91 245v-97c74 0 124-17 165-48z"/>
+  <path fill="#ea1d25" d="M256 190h70v28h28v56h-28v28h-28v28h-42v-28h-42v-28h-28v-56h28v-28h42z"/>
+  <g fill="#0b1833">
+    <rect x="214" y="190" width="42" height="28"/>
+    <rect x="284" y="190" width="42" height="28"/>
+    <rect x="186" y="218" width="28" height="56"/>
+    <rect x="326" y="218" width="28" height="56"/>
+    <rect x="214" y="302" width="42" height="28"/>
+    <rect x="284" y="302" width="42" height="28"/>
+    <rect x="242" y="330" width="28" height="28"/>
+  </g>
+</svg>
