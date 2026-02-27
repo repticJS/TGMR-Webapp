@@ -12,7 +12,7 @@ Each page always renders the full achievement catalog and shows completion statu
 - `✓` for completed achievements
 - `○` for not-yet-completed achievements
 
-Use the world selector to switch `world_id` and view progress per world.
+The world selector is populated from achievement `world_id` values (e.g. UUIDs), and the list is shown for one selected `world_id` at a time.
 
 ## Run locally
 
