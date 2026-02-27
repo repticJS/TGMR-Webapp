@@ -1,6 +1,6 @@
-# TGMR Webapp
+# TGMR Webapp (Next.js)
 
-Simple front-end for viewing TGMR team/player Minecraft achievements.
+Next.js app for viewing TGMR team/player Minecraft achievements.
 
 ## Routes
 
@@ -10,7 +10,8 @@ Simple front-end for viewing TGMR team/player Minecraft achievements.
 ## Run locally
 
 ```bash
-node server.js
+npm install
+npm run dev
 ```
 
-Then open `http://localhost:4173/team/<uuid>` or `http://localhost:4173/player/<uuid>`.
+Then open `http://localhost:3000/team/<uuid>` or `http://localhost:3000/player/<uuid>`.
