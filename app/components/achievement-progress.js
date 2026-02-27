@@ -2,23 +2,21 @@
 
 import { useMemo, useState } from "react";
 
-const FALLBACK_WORLD_ID = "unknown-world";
+const NO_WORLD_LABEL = "None";
 
 function normalizeWorldId(value) {
-  return value || FALLBACK_WORLD_ID;
+  return value || NO_WORLD_LABEL;
 }
 
 export default function AchievementProgress({ allAchievements, completedAchievements }) {
   const worlds = useMemo(() => {
     const worldIds = new Set(
-      completedAchievements.map((achievement) => normalizeWorldId(achievement.world_id))
+      completedAchievements
+        .map((achievement) => achievement.world_id)
+        .filter((worldId) => Boolean(worldId))
     );
 
-    if (worldIds.size === 0) {
-      worldIds.add(FALLBACK_WORLD_ID);
-    }
-
-    return [...worldIds].sort();
+    return worldIds.size ? [...worldIds].sort() : [NO_WORLD_LABEL];
   }, [completedAchievements]);
 
   const [selectedWorldId, setSelectedWorldId] = useState(worlds[0]);
@@ -27,7 +25,9 @@ export default function AchievementProgress({ allAchievements, completedAchievem
     const map = new Map();
 
     for (const achievement of completedAchievements) {
-      if (normalizeWorldId(achievement.world_id) === selectedWorldId) {
+      const worldId = normalizeWorldId(achievement.world_id);
+
+      if (worldId === selectedWorldId) {
         map.set(achievement.achievement_id, achievement);
       }
     }

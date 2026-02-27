@@ -139,3 +139,48 @@ main {
   border-left: 4px solid #ce2c3a;
   background: #fff2f4;
 }
+
+
+.finder-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1rem;
+  margin-top: 0.8rem;
+}
+
+.finder-card {
+  border: 1px solid #e5e9f4;
+  border-radius: 8px;
+  padding: 0.9rem;
+  display: grid;
+  gap: 0.6rem;
+}
+
+.finder-card h3 {
+  margin: 0;
+}
+
+.finder-card select,
+.finder-card input,
+.finder-card button {
+  font: inherit;
+  padding: 0.45rem 0.55rem;
+  border-radius: 6px;
+  border: 1px solid #ced5e4;
+}
+
+.finder-card button {
+  background: #2a5298;
+  color: #fff;
+  border-color: #2a5298;
+  cursor: pointer;
+}
+
+.finder-card button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.helper-error {
+  color: #9e1f2b;
+}
