@@ -10,8 +10,13 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body>
         <header className="site-header">
-          <h1>TGMR Achievement Viewer</h1>
-          <p>View Minecraft achievements by team or player UUID.</p>
+          <div className="brand-wrap">
+            <img src="/tgmr-logo.svg" alt="TGMR logo" className="site-logo" />
+            <div>
+              <h1>TGMR Achievement Viewer</h1>
+              <p>Track team and player progress by world.</p>
+            </div>
+          </div>
         </header>
         <main>{children}</main>
       </body>

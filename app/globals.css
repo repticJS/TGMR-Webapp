@@ -1,36 +1,72 @@
 :root {
-  color-scheme: light;
+  color-scheme: dark;
   font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
   line-height: 1.5;
-  background: #f6f7fb;
-  color: #1f2430;
+  background: #090d14;
+  color: #e8eef8;
 }
 
 body {
   margin: 0;
   min-height: 100vh;
-  background: #f6f7fb;
+  background: radial-gradient(circle at top, #15233d 0%, #090d14 45%, #06090f 100%);
 }
 
 .site-header {
-  background: linear-gradient(135deg, #2a5298, #1e3c72);
-  color: #fff;
-  padding: 2rem 1.2rem;
-  text-align: center;
+  padding: 1.5rem 1.2rem 1rem;
+  border-bottom: 1px solid #1f2a3f;
+  background: rgba(7, 12, 22, 0.7);
+  backdrop-filter: blur(8px);
+}
+
+.brand-wrap {
+  max-width: 980px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.site-logo {
+  width: 56px;
+  height: 56px;
+  border-radius: 12px;
+  box-shadow: 0 0 0 1px #263450;
+  background: #0b1425;
+}
+
+.site-header h1 {
+  margin: 0;
+  font-size: clamp(1.4rem, 2vw, 1.9rem);
+}
+
+.site-header p {
+  margin: 0.25rem 0 0;
+  color: #9ab0d4;
 }
 
 main {
   max-width: 980px;
-  margin: 1.25rem auto;
+  margin: 1.5rem auto;
   padding: 0 1rem 2rem;
 }
 
 .panel {
-  background: #fff;
-  border-radius: 10px;
-  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+  background: linear-gradient(180deg, #111a2b, #0d1422);
+  border-radius: 14px;
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.28);
   margin-bottom: 1rem;
-  padding: 1rem 1.25rem;
+  padding: 1.1rem 1.25rem;
+  border: 1px solid #1f2a3f;
+}
+
+.finder-shell {
+  max-width: 620px;
+  margin: 0 auto;
+}
+
+.finder-shell h2 {
+  margin-top: 0;
 }
 
 .profile-grid {
@@ -45,8 +81,8 @@ main {
   height: 96px;
   border-radius: 12px;
   object-fit: cover;
-  background: #eef1f8;
-  border: 1px solid #e4e7ef;
+  background: #101a2a;
+  border: 1px solid #283954;
 }
 
 .meta-list {
@@ -72,8 +108,10 @@ main {
 }
 
 .world-filter-label select {
-  border: 1px solid #ced5e4;
-  border-radius: 6px;
+  border: 1px solid #33496e;
+  background: #101a2a;
+  color: #e8eef8;
+  border-radius: 8px;
   padding: 0.35rem 0.5rem;
 }
 
@@ -83,12 +121,13 @@ main {
 }
 
 .achievement-card {
-  border: 1px solid #e5e9f4;
-  border-radius: 8px;
+  border: 1px solid #253753;
+  border-radius: 10px;
   display: grid;
   grid-template-columns: 42px 1fr;
   gap: 0.85rem;
   padding: 0.8rem;
+  background: #0d1728;
 }
 
 .achievement-status {
@@ -101,15 +140,15 @@ main {
 }
 
 .achievement-status.completed {
-  background: #d9f7e6;
-  color: #0d6b37;
-  border: 1px solid #9ed7b7;
+  background: #163926;
+  color: #78e0a1;
+  border: 1px solid #2f7f52;
 }
 
 .achievement-status.pending {
-  background: #eef1f8;
-  color: #5e6b88;
-  border: 1px solid #ced5e4;
+  background: #141d2f;
+  color: #8fa6cb;
+  border: 1px solid #33496e;
 }
 
 .achievement-title {
@@ -118,42 +157,33 @@ main {
 
 .achievement-description {
   margin: 0;
-  color: #4a5367;
+  color: #a8bbdc;
 }
 
 .achievement-meta {
   margin-top: 0.4rem;
   font-size: 0.85rem;
-  color: #55617d;
-}
-
-.code-block {
-  background: #121722;
-  color: #d7e1ff;
-  padding: 0.8rem;
-  border-radius: 8px;
-  overflow: auto;
+  color: #91a6ca;
 }
 
 .error {
   border-left: 4px solid #ce2c3a;
-  background: #fff2f4;
+  background: #2a1118;
 }
 
-
-.finder-grid {
+.finder-stack {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 1rem;
   margin-top: 0.8rem;
 }
 
 .finder-card {
-  border: 1px solid #e5e9f4;
-  border-radius: 8px;
+  border: 1px solid #253753;
+  border-radius: 10px;
   padding: 0.9rem;
   display: grid;
   gap: 0.6rem;
+  background: #0d1728;
 }
 
 .finder-card h3 {
@@ -164,15 +194,18 @@ main {
 .finder-card input,
 .finder-card button {
   font: inherit;
-  padding: 0.45rem 0.55rem;
-  border-radius: 6px;
-  border: 1px solid #ced5e4;
+  padding: 0.55rem 0.65rem;
+  border-radius: 8px;
+  border: 1px solid #33496e;
+  background: #101a2a;
+  color: #e8eef8;
 }
 
 .finder-card button {
-  background: #2a5298;
-  color: #fff;
-  border-color: #2a5298;
+  background: linear-gradient(135deg, #84d314, #5fa90f);
+  color: #09110a;
+  border: none;
+  font-weight: 700;
   cursor: pointer;
 }
 
@@ -182,5 +215,5 @@ main {
 }
 
 .helper-error {
-  color: #9e1f2b;
+  color: #ff9ca5;
 }

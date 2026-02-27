@@ -75,29 +75,15 @@ export default function UuidFinder() {
   }
 
   return (
-    <section className="panel">
-      <h2>Find your UUID</h2>
-      <p>Pick your team/player and jump straight to the right page.</p>
+    <section className="panel finder-shell">
+      <h2>Jump to your page</h2>
+      <p>Select your player or team and go directly to your achievements.</p>
 
       {loading ? <p>Loading teams and players…</p> : null}
       {error ? <p className="helper-error">{error}</p> : null}
 
       {hasDirectoryData ? (
-        <div className="finder-grid">
-          <div className="finder-card">
-            <h3>Team</h3>
-            <select value={selectedTeamUuid} onChange={(event) => setSelectedTeamUuid(event.target.value)}>
-              {teams.map((team) => (
-                <option key={team.uuid} value={team.uuid}>
-                  {team.name} ({team.uuid})
-                </option>
-              ))}
-            </select>
-            <button onClick={goToTeam} disabled={!selectedTeamUuid}>
-              Go to team page
-            </button>
-          </div>
-
+        <div className="finder-stack">
           <div className="finder-card">
             <h3>Player</h3>
             <select
@@ -106,7 +92,7 @@ export default function UuidFinder() {
             >
               {players.map((player) => (
                 <option key={player.uuid} value={player.uuid}>
-                  {player.minecraft_username || player.username} ({player.uuid})
+                  {player.minecraft_username || player.username}
                 </option>
               ))}
             </select>
@@ -114,21 +100,23 @@ export default function UuidFinder() {
               Go to player page
             </button>
           </div>
-        </div>
-      ) : (
-        <div className="finder-grid">
+
           <div className="finder-card">
-            <h3>Team UUID</h3>
-            <input
-              value={manualTeamUuid}
-              onChange={(event) => setManualTeamUuid(event.target.value)}
-              placeholder="Paste team UUID"
-            />
-            <button onClick={goToTeam} disabled={!manualTeamUuid.trim()}>
+            <h3>Team</h3>
+            <select value={selectedTeamUuid} onChange={(event) => setSelectedTeamUuid(event.target.value)}>
+              {teams.map((team) => (
+                <option key={team.uuid} value={team.uuid}>
+                  {team.name}
+                </option>
+              ))}
+            </select>
+            <button onClick={goToTeam} disabled={!selectedTeamUuid}>
               Go to team page
             </button>
           </div>
-
+        </div>
+      ) : (
+        <div className="finder-stack">
           <div className="finder-card">
             <h3>Player UUID</h3>
             <input
@@ -138,6 +126,18 @@ export default function UuidFinder() {
             />
             <button onClick={goToPlayer} disabled={!manualPlayerUuid.trim()}>
               Go to player page
+            </button>
+          </div>
+
+          <div className="finder-card">
+            <h3>Team UUID</h3>
+            <input
+              value={manualTeamUuid}
+              onChange={(event) => setManualTeamUuid(event.target.value)}
+              placeholder="Paste team UUID"
+            />
+            <button onClick={goToTeam} disabled={!manualTeamUuid.trim()}>
+              Go to team page
             </button>
           </div>
         </div>
