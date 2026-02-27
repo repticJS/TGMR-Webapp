@@ -57,6 +57,26 @@ main {
   gap: 0.3rem;
 }
 
+.achievement-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.world-filter-label {
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.world-filter-label select {
+  border: 1px solid #ced5e4;
+  border-radius: 6px;
+  padding: 0.35rem 0.5rem;
+}
+
 .achievement-list {
   display: grid;
   gap: 0.75rem;
@@ -66,17 +86,30 @@ main {
   border: 1px solid #e5e9f4;
   border-radius: 8px;
   display: grid;
-  grid-template-columns: 56px 1fr;
+  grid-template-columns: 42px 1fr;
   gap: 0.85rem;
   padding: 0.8rem;
 }
 
-.achievement-icon {
-  width: 56px;
-  height: 56px;
-  border-radius: 8px;
-  background: radial-gradient(circle at 30% 30%, #f0f5ff, #c8d8ff);
-  border: 1px solid #b6caf7;
+.achievement-status {
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+}
+
+.achievement-status.completed {
+  background: #d9f7e6;
+  color: #0d6b37;
+  border: 1px solid #9ed7b7;
+}
+
+.achievement-status.pending {
+  background: #eef1f8;
+  color: #5e6b88;
+  border: 1px solid #ced5e4;
 }
 
 .achievement-title {

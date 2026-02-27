@@ -1,6 +1,8 @@
 import { notFound } from "next/navigation";
+import AchievementProgress from "../../components/achievement-progress";
+import { buildAchievementCatalog } from "../../../lib/achievement-catalog";
 import { fetchPlayers, fetchTeams } from "../../../lib/tgmr-api";
-import { AchievementList, ErrorPanel } from "../../../lib/ui";
+import { ErrorPanel } from "../../../lib/ui";
 
 export default async function PlayerPage({ params }) {
   const { uuid } = params;
@@ -14,6 +16,8 @@ export default async function PlayerPage({ params }) {
     }
 
     const team = teams.find((item) => Number(item.id) === Number(player.team_id));
+    const completedAchievements = player.achievements ?? [];
+    const allAchievements = buildAchievementCatalog(completedAchievements);
 
     return (
       <>
@@ -34,10 +38,22 @@ export default async function PlayerPage({ params }) {
             </li>
           </ul>
         </section>
-        <AchievementList achievements={player.achievements ?? []} />
+        <AchievementProgress
+          allAchievements={allAchievements}
+          completedAchievements={completedAchievements}
+        />
       </>
     );
   } catch (error) {
-    return <ErrorPanel message={error.message || "Player request failed."} />;
+    if (error?.digest === "NEXT_NOT_FOUND") {
+      throw error;
+    }
+
+    return (
+      <>
+        <ErrorPanel message={error.message || "Player request failed."} />
+        <AchievementProgress allAchievements={buildAchievementCatalog()} completedAchievements={[]} />
+      </>
+    );
   }
 }

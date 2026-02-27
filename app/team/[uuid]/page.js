@@ -1,6 +1,8 @@
 import { notFound } from "next/navigation";
+import AchievementProgress from "../../components/achievement-progress";
+import { buildAchievementCatalog } from "../../../lib/achievement-catalog";
 import { fetchTeams } from "../../../lib/tgmr-api";
-import { AchievementList, ErrorPanel } from "../../../lib/ui";
+import { ErrorPanel } from "../../../lib/ui";
 
 export default async function TeamPage({ params }) {
   const { uuid } = params;
@@ -12,6 +14,9 @@ export default async function TeamPage({ params }) {
     if (!team) {
       notFound();
     }
+
+    const completedAchievements = team.achievements ?? [];
+    const allAchievements = buildAchievementCatalog(completedAchievements);
 
     return (
       <>
@@ -35,10 +40,22 @@ export default async function TeamPage({ params }) {
             </ul>
           </div>
         </section>
-        <AchievementList achievements={team.achievements ?? []} />
+        <AchievementProgress
+          allAchievements={allAchievements}
+          completedAchievements={completedAchievements}
+        />
       </>
     );
   } catch (error) {
-    return <ErrorPanel message={error.message || "Team request failed."} />;
+    if (error?.digest === "NEXT_NOT_FOUND") {
+      throw error;
+    }
+
+    return (
+      <>
+        <ErrorPanel message={error.message || "Team request failed."} />
+        <AchievementProgress allAchievements={buildAchievementCatalog()} completedAchievements={[]} />
+      </>
+    );
   }
 }
