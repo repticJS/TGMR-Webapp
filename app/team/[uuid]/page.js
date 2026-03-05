@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import AchievementProgress from "../../components/achievement-progress";
+import AutoRefreshControls from "../../components/auto-refresh-controls";
 import { buildAchievementCatalog } from "../../../lib/achievement-catalog";
 import { fetchTeams } from "../../../lib/tgmr-api";
 import { ErrorPanel } from "../../../lib/ui";
@@ -21,9 +22,12 @@ export default async function TeamPage({ params }) {
 
     return (
       <>
-        <Link className="back-link" href="/">
-          ← Back to Home
-        </Link>
+        <div className="page-controls">
+          <Link className="back-link" href="/">
+            ← Back to Home
+          </Link>
+          <AutoRefreshControls />
+        </div>
         <section className="panel">
           <h2>Team: {team.name}</h2>
           <div className="profile-grid">
@@ -57,9 +61,12 @@ export default async function TeamPage({ params }) {
 
     return (
       <>
-        <Link className="back-link" href="/">
-          ← Back to Home
-        </Link>
+        <div className="page-controls">
+          <Link className="back-link" href="/">
+            ← Back to Home
+          </Link>
+          <AutoRefreshControls />
+        </div>
         <ErrorPanel message={error.message || "Team request failed."} />
         <AchievementProgress allAchievements={buildAchievementCatalog()} completedAchievements={[]} />
       </>

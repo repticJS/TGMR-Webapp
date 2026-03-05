@@ -33,8 +33,6 @@ body {
   max-width: 220px;
   object-fit: contain;
   object-position: center;
-  box-shadow: 0 0 0 1px #263450;
-  background: #0b1425;
 }
 
 .site-header h1 {
@@ -54,9 +52,41 @@ main {
 }
 
 
+
+.page-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: 0 0 0.75rem;
+  flex-wrap: wrap;
+}
+
+.refresh-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: #9ab0d4;
+  font-size: 0.92rem;
+}
+
+.refresh-controls button {
+  font: inherit;
+  padding: 0.35rem 0.6rem;
+  border-radius: 8px;
+  border: 1px solid #33496e;
+  background: #101a2a;
+  color: #e8eef8;
+  cursor: pointer;
+}
+
+.refresh-controls button:hover {
+  background: #15243b;
+}
+
 .back-link {
   display: inline-block;
-  margin: 0 0 0.75rem;
+  margin: 0;
   color: #9ed5ff;
   text-decoration: none;
   font-weight: 600;

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import AchievementProgress from "../../components/achievement-progress";
+import AutoRefreshControls from "../../components/auto-refresh-controls";
 import { buildAchievementCatalog } from "../../../lib/achievement-catalog";
 import { fetchPlayers, fetchTeams } from "../../../lib/tgmr-api";
 import { ErrorPanel } from "../../../lib/ui";
@@ -22,9 +23,12 @@ export default async function PlayerPage({ params }) {
 
     return (
       <>
-        <Link className="back-link" href="/">
-          ← Back to Home
-        </Link>
+        <div className="page-controls">
+          <Link className="back-link" href="/">
+            ← Back to Home
+          </Link>
+          <AutoRefreshControls />
+        </div>
         <section className="panel">
           <h2>Player: {player.minecraft_username || player.username}</h2>
           <ul className="meta-list">
@@ -55,9 +59,12 @@ export default async function PlayerPage({ params }) {
 
     return (
       <>
-        <Link className="back-link" href="/">
-          ← Back to Home
-        </Link>
+        <div className="page-controls">
+          <Link className="back-link" href="/">
+            ← Back to Home
+          </Link>
+          <AutoRefreshControls />
+        </div>
         <ErrorPanel message={error.message || "Player request failed."} />
         <AchievementProgress allAchievements={buildAchievementCatalog()} completedAchievements={[]} />
       </>
