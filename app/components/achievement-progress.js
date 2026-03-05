@@ -21,18 +21,24 @@ export default function AchievementProgress({ allAchievements, completedAchievem
 
   const [selectedWorldId, setSelectedWorldId] = useState(worlds[0]);
 
+  const normalizeAchievementName = (name) => (name ?? "").trim().toLowerCase();
+
   const completedForSelectedWorld = useMemo(() => {
-    const map = new Map();
+    const set = new Set();
 
     for (const achievement of completedAchievements) {
       const worldId = normalizeWorldId(achievement.world_id);
 
       if (worldId === selectedWorldId) {
-        map.set(achievement.achievement_id, achievement);
+        const normalizedName = normalizeAchievementName(achievement.name);
+
+        if (normalizedName) {
+          set.add(normalizedName);
+        }
       }
     }
 
-    return map;
+    return set;
   }, [completedAchievements, selectedWorldId]);
 
   return (
@@ -53,7 +59,7 @@ export default function AchievementProgress({ allAchievements, completedAchievem
 
       <div className="achievement-list">
         {allAchievements.map((achievement) => {
-          const isCompleted = completedForSelectedWorld.has(achievement.achievement_id);
+          const isCompleted = completedForSelectedWorld.has(normalizeAchievementName(achievement.name));
           const meta = [
             achievement.achievement_id ? `ID: ${achievement.achievement_id}` : null,
             achievement.type ? `Type: ${achievement.type}` : null,
