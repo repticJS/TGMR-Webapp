@@ -3,12 +3,19 @@
 import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 
+const LOGO_URL = "https://tgmr.rsc-community.com/Logo.png";
+
+function getPlayerName(player) {
+  return player.minecraft_username || player.username || "Unknown player";
+}
+
 export default function UuidFinder() {
   const router = useRouter();
   const [teams, setTeams] = useState([]);
   const [players, setPlayers] = useState([]);
   const [selectedTeamUuid, setSelectedTeamUuid] = useState("");
   const [selectedPlayerUuid, setSelectedPlayerUuid] = useState("");
+  const [playerSearch, setPlayerSearch] = useState("");
   const [manualTeamUuid, setManualTeamUuid] = useState("");
   const [manualPlayerUuid, setManualPlayerUuid] = useState("");
   const [loading, setLoading] = useState(true);
@@ -20,6 +27,8 @@ export default function UuidFinder() {
     async function load() {
       try {
         setLoading(true);
+        setError("");
+
         const [teamsResponse, playersResponse] = await Promise.all([
           fetch("/api/tgmr/teams", { cache: "no-store" }),
           fetch("/api/tgmr/players", { cache: "no-store" })
@@ -38,8 +47,6 @@ export default function UuidFinder() {
 
         setTeams(teamsPayload.data ?? []);
         setPlayers(playersPayload.data ?? []);
-        setSelectedTeamUuid(teamsPayload.data?.[0]?.uuid ?? "");
-        setSelectedPlayerUuid(playersPayload.data?.[0]?.uuid ?? "");
       } catch (loadError) {
         if (mounted) {
           setError(loadError.message || "Failed to load lookup data.");
@@ -58,7 +65,42 @@ export default function UuidFinder() {
     };
   }, []);
 
-  const hasDirectoryData = useMemo(() => teams.length > 0 || players.length > 0, [teams, players]);
+  const sortedTeams = useMemo(
+    () => [...teams].sort((a, b) => (a.name ?? "").localeCompare(b.name ?? "")),
+    [teams]
+  );
+
+  const availablePlayers = useMemo(() => {
+    const search = playerSearch.trim().toLowerCase();
+
+    return players
+      .filter((player) => player.team_id == null)
+      .sort((a, b) => getPlayerName(a).localeCompare(getPlayerName(b)))
+      .filter((player) => {
+        if (!search) {
+          return true;
+        }
+
+        return getPlayerName(player).toLowerCase().includes(search);
+      });
+  }, [players, playerSearch]);
+
+  useEffect(() => {
+    if (!selectedTeamUuid || !sortedTeams.some((team) => team.uuid === selectedTeamUuid)) {
+      setSelectedTeamUuid(sortedTeams[0]?.uuid ?? "");
+    }
+  }, [sortedTeams, selectedTeamUuid]);
+
+  useEffect(() => {
+    if (!selectedPlayerUuid || !availablePlayers.some((player) => player.uuid === selectedPlayerUuid)) {
+      setSelectedPlayerUuid(availablePlayers[0]?.uuid ?? "");
+    }
+  }, [availablePlayers, selectedPlayerUuid]);
+
+  const hasDirectoryData = useMemo(
+    () => sortedTeams.length > 0 || availablePlayers.length > 0,
+    [sortedTeams.length, availablePlayers.length]
+  );
 
   function goToTeam() {
     const uuid = (manualTeamUuid || selectedTeamUuid).trim();
@@ -79,23 +121,38 @@ export default function UuidFinder() {
       <h2>Jump to your page</h2>
       <p>Select your player or team and go directly to your achievements.</p>
 
-      {loading ? <p>Loading teams and players…</p> : null}
+      {loading ? (
+        <div className="finder-loading" aria-live="polite">
+          <img src={LOGO_URL} alt="Loading" className="loading-logo" />
+          <p>Loading teams and players…</p>
+        </div>
+      ) : null}
+
       {error ? <p className="helper-error">{error}</p> : null}
 
-      {hasDirectoryData ? (
+      {!loading && hasDirectoryData ? (
         <div className="finder-stack">
           <div className="finder-card">
             <h3>Player</h3>
+            <input
+              value={playerSearch}
+              onChange={(event) => setPlayerSearch(event.target.value)}
+              placeholder="Search player name"
+            />
             <select
               value={selectedPlayerUuid}
               onChange={(event) => setSelectedPlayerUuid(event.target.value)}
+              disabled={!availablePlayers.length}
             >
-              {players.map((player) => (
+              {availablePlayers.map((player) => (
                 <option key={player.uuid} value={player.uuid}>
-                  {player.minecraft_username || player.username}
+                  {getPlayerName(player)}
                 </option>
               ))}
             </select>
+            {!availablePlayers.length ? (
+              <p className="helper-error">No unassigned players found for this search.</p>
+            ) : null}
             <button onClick={goToPlayer} disabled={!selectedPlayerUuid}>
               Go to player page
             </button>
@@ -104,7 +161,7 @@ export default function UuidFinder() {
           <div className="finder-card">
             <h3>Team</h3>
             <select value={selectedTeamUuid} onChange={(event) => setSelectedTeamUuid(event.target.value)}>
-              {teams.map((team) => (
+              {sortedTeams.map((team) => (
                 <option key={team.uuid} value={team.uuid}>
                   {team.name}
                 </option>
@@ -115,7 +172,7 @@ export default function UuidFinder() {
             </button>
           </div>
         </div>
-      ) : (
+      ) : !loading ? (
         <div className="finder-stack">
           <div className="finder-card">
             <h3>Player UUID</h3>
@@ -141,7 +198,7 @@ export default function UuidFinder() {
             </button>
           </div>
         </div>
-      )}
+      ) : null}
     </section>
   );
 }

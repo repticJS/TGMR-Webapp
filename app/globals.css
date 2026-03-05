@@ -222,6 +222,37 @@ main {
   margin-top: 0.8rem;
 }
 
+
+.finder-loading {
+  display: grid;
+  justify-items: center;
+  gap: 0.5rem;
+  margin: 0.5rem 0 0.75rem;
+  color: #9ab0d4;
+}
+
+.loading-logo {
+  height: 58px;
+  width: auto;
+  object-fit: contain;
+  animation: logo-pulse 1.6s ease-in-out infinite;
+}
+
+@keyframes logo-pulse {
+  0% {
+    opacity: 0.5;
+    transform: scale(0.96);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0.5;
+    transform: scale(0.96);
+  }
+}
+
 .finder-card {
   border: 1px solid #253753;
   border-radius: 10px;
