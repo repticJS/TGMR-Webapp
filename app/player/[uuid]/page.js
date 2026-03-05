@@ -17,7 +17,7 @@ export default async function PlayerPage({ params }) {
 
     const team = teams.find((item) => Number(item.id) === Number(player.team_id));
     const completedAchievements = player.achievements ?? [];
-    const allAchievements = buildAchievementCatalog(completedAchievements);
+    const allAchievements = buildAchievementCatalog();
 
     return (
       <>

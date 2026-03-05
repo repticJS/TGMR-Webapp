@@ -16,7 +16,7 @@ export default async function TeamPage({ params }) {
     }
 
     const completedAchievements = team.achievements ?? [];
-    const allAchievements = buildAchievementCatalog(completedAchievements);
+    const allAchievements = buildAchievementCatalog();
 
     return (
       <>
