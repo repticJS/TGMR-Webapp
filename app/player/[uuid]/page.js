@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import AchievementProgress from "../../components/achievement-progress";
 import { buildAchievementCatalog } from "../../../lib/achievement-catalog";
@@ -21,6 +22,9 @@ export default async function PlayerPage({ params }) {
 
     return (
       <>
+        <Link className="back-link" href="/">
+          ← Back to Home
+        </Link>
         <section className="panel">
           <h2>Player: {player.minecraft_username || player.username}</h2>
           <ul className="meta-list">
@@ -51,6 +55,9 @@ export default async function PlayerPage({ params }) {
 
     return (
       <>
+        <Link className="back-link" href="/">
+          ← Back to Home
+        </Link>
         <ErrorPanel message={error.message || "Player request failed."} />
         <AchievementProgress allAchievements={buildAchievementCatalog()} completedAchievements={[]} />
       </>
