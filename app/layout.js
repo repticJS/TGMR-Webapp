@@ -11,7 +11,7 @@ export default function RootLayout({ children }) {
       <body>
         <header className="site-header">
           <div className="brand-wrap">
-            <img src="/tgmr-logo.svg" alt="TGMR logo" className="site-logo" />
+            <img src="https://tgmr.rsc-community.com/Logo.png" alt="TGMR logo" className="site-logo" />
             <div>
               <h1>TGMR Achievement Viewer</h1>
               <p>Track team and player progress by world.</p>
