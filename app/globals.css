@@ -28,9 +28,11 @@ body {
 }
 
 .site-logo {
-  width: 56px;
+  width: auto;
   height: 56px;
-  border-radius: 12px;
+  max-width: 220px;
+  object-fit: contain;
+  object-position: center;
   box-shadow: 0 0 0 1px #263450;
   background: #0b1425;
 }
@@ -49,6 +51,19 @@ main {
   max-width: 980px;
   margin: 1.5rem auto;
   padding: 0 1rem 2rem;
+}
+
+
+.back-link {
+  display: inline-block;
+  margin: 0 0 0.75rem;
+  color: #9ed5ff;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.back-link:hover {
+  text-decoration: underline;
 }
 
 .panel {

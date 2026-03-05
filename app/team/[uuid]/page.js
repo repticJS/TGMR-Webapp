@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import AchievementProgress from "../../components/achievement-progress";
 import { buildAchievementCatalog } from "../../../lib/achievement-catalog";
@@ -16,10 +17,13 @@ export default async function TeamPage({ params }) {
     }
 
     const completedAchievements = team.achievements ?? [];
-    const allAchievements = buildAchievementCatalog(completedAchievements);
+    const allAchievements = buildAchievementCatalog();
 
     return (
       <>
+        <Link className="back-link" href="/">
+          ← Back to Home
+        </Link>
         <section className="panel">
           <h2>Team: {team.name}</h2>
           <div className="profile-grid">
@@ -53,6 +57,9 @@ export default async function TeamPage({ params }) {
 
     return (
       <>
+        <Link className="back-link" href="/">
+          ← Back to Home
+        </Link>
         <ErrorPanel message={error.message || "Team request failed."} />
         <AchievementProgress allAchievements={buildAchievementCatalog()} completedAchievements={[]} />
       </>
